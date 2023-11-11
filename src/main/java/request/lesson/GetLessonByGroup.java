@@ -1,9 +1,10 @@
 package request.lesson;
 
 public class GetLessonByGroup {
-    private String startDate;
-    private String endDate;
-    private long groupId;
+    private final String startDate;
+    private final String endDate;
+    private final long groupId;
+
 
     public GetLessonByGroup(String startDate, String endDate, long groupId) {
         this.startDate = startDate;

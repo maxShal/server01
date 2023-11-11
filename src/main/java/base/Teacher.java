@@ -4,9 +4,9 @@ import java.util.Objects;
 
 public class Teacher
 {
-    private String name;
-    private String surename;
-    private String fathername;
+    private final String name;
+    private final String surename;
+    private final String fathername;
 
     public Teacher(String name, String surename, String fathername) {
         this.name = name;

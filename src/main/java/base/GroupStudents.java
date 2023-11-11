@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class GroupStudents
 {
-    private String groupName;
+    private final String groupName;
 
     public GroupStudents(String groupName) {
         this.groupName = groupName;

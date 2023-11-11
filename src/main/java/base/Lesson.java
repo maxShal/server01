@@ -5,10 +5,10 @@ import java.util.Objects;
 
 public class Lesson
 {
-    private int numberOfLesson;
-    private Teacher teacher;
-    private GroupStudents groupStudents;
-    private LocalDate date;
+    private final int numberOfLesson;
+    private final Teacher teacher;
+    private final GroupStudents groupStudents;
+    private final LocalDate date;
 
     public Lesson(int numberOfLesson, Teacher teacher, GroupStudents groupStudents, LocalDate date) {
         this.numberOfLesson = numberOfLesson;

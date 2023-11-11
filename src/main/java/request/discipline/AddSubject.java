@@ -2,7 +2,7 @@ package request.discipline;
 
 public class AddSubject
 {
-    private String name;
+    private final String name;
 
     public AddSubject(String name) {
         this.name = name;

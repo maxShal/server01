@@ -4,12 +4,12 @@ import java.sql.Struct;
 import java.util.Objects;
 
 public class Student {
-    private String name;
-    private String surename;
-    private String fathername;
+    private final String name;
+    private final String surename;
+    private final String fathername;
 
-    private String status;
-    private GroupStudents group;
+    private final String status;
+    private final GroupStudents group;
 
     public String getName() {
         return name;

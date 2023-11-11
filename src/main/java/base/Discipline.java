@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Discipline
 {
-    private String title;
+    private final String title;
 
     public Discipline(String title) {
         this.title = title;
