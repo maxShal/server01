@@ -1,7 +1,7 @@
 package response.lesson;
 
-import base.GroupStudents;
-import base.Teacher;
+import entity.GroupStudents;
+import entity.Teacher;
 
 import java.time.LocalDate;
 

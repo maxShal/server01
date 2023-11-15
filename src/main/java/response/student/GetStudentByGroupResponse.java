@@ -1,6 +1,6 @@
 package response.student;
 
-import base.Student;
+import entity.Student;
 
 import java.util.List;
 

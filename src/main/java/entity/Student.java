@@ -1,6 +1,5 @@
-package base;
+package entity;
 
-import java.sql.Struct;
 import java.util.Objects;
 
 public class Student {

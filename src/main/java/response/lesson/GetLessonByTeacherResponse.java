@@ -1,6 +1,6 @@
 package response.lesson;
 
-import base.GroupStudents;
+import entity.GroupStudents;
 
 import java.time.LocalDate;
 
