@@ -5,9 +5,15 @@ import java.util.Objects;
 public class GroupStudents
 {
     private final String groupName;
+    private final long id;
 
-    public GroupStudents(String groupName) {
+    public long getId() {
+        return id;
+    }
+
+    public GroupStudents(long id, String groupName) {
         this.groupName = groupName;
+        this.id =id;
     }
 
     public String getGroupName() {

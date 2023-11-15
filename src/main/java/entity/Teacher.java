@@ -8,10 +8,24 @@ public class Teacher
     private final String surename;
     private final String fathername;
 
-    public Teacher(String name, String surename, String fathername) {
-        this.name = name;
+    public GroupStudents getGroup() {
+        return group;
+    }
+
+    private GroupStudents group;
+
+
+    private final long id;
+
+    public Teacher(long id, String surename,String name, String fathername) {
+        this.id=id;
         this.surename = surename;
+        this.name=name;
         this.fathername = fathername;
+    }
+
+    public long getId() {
+        return id;
     }
 
     public String getName() {

@@ -3,12 +3,17 @@ package entity;
 import java.util.Objects;
 
 public class Student {
+    private final long id;
     private final String name;
     private final String surename;
     private final String fathername;
 
     private final String status;
     private final GroupStudents group;
+
+    public long getId() {
+        return id;
+    }
 
     public String getName() {
         return name;
@@ -30,9 +35,10 @@ public class Student {
         return group;
     }
 
-    public Student(String name, String surename, String fathername, String status, GroupStudents group) {
-        this.name = name;
+    public Student(long id, String surename,String name, String fathername, String status, GroupStudents group) {
+        this.id = id;
         this.surename = surename;
+        this.name = name;
         this.fathername = fathername;
         this.status = status;
         this.group = group;
