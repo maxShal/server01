@@ -2,9 +2,9 @@ package response;
 
 public class ResponseEntity <T> {
     private T data;
-    private int httpStatus;
+    private long httpStatus;
 
-    public ResponseEntity(T data, int httpStatus) {
+    public ResponseEntity(T data, long httpStatus) {
         this.data = data;
         this.httpStatus = httpStatus;
     }
@@ -13,7 +13,7 @@ public class ResponseEntity <T> {
         return data;
     }
 
-    public int getHttpStatus() {
+    public long getHttpStatus() {
         return httpStatus;
     }
 }

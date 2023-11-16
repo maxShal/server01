@@ -1,6 +1,7 @@
 package repositories;
 
 import entity.*;
+import entity.Student;
 
 import java.util.HashMap;
 import java.util.Map;

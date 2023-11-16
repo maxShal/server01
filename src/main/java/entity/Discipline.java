@@ -4,10 +4,20 @@ import java.util.Objects;
 
 public class Discipline
 {
+    private final long id;
+
     private final String title;
 
-    public Discipline(String title) {
+
+    public Discipline(long id,String title) {
         this.title = title;
+        this.id=id;
+    }
+
+
+
+    public long getId() {
+        return id;
     }
 
     public String getTitle() {

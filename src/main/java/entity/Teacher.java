@@ -8,10 +8,6 @@ public class Teacher
     private final String surename;
     private final String fathername;
 
-    public GroupStudents getGroup() {
-        return group;
-    }
-
     private GroupStudents group;
 
 
@@ -26,6 +22,9 @@ public class Teacher
 
     public long getId() {
         return id;
+    }
+    public GroupStudents getGroup() {
+        return group;
     }
 
     public String getName() {

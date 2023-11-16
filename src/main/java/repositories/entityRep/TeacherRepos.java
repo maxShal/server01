@@ -1,7 +1,8 @@
-package repositories;
+package repositories.entityRep;
 
 import entity.GroupStudents;
 import entity.Teacher;
+import repositories.DataBase;
 import repositories.interfaces.ITeacherRepos;
 
 import java.util.Collections;
@@ -11,12 +12,11 @@ import java.util.Map;
 public class TeacherRepos implements ITeacherRepos
 {
     private final Map<Long, Teacher> teacherMap;
-    private final Map<Long, GroupStudents> groupStudentsMap;
 
     public TeacherRepos(DataBase dataBase)
     {
         this.teacherMap = dataBase.getTeacherMap();
-        this.groupStudentsMap = dataBase.getGroupStudentsMap();
+
     }
 
     @Override
@@ -42,12 +42,9 @@ public class TeacherRepos implements ITeacherRepos
     }
 
     @Override
-    public List<Teacher> getAllByGroupId(long Id)
+    public List<Teacher> getAll()
     {
-        if(groupStudentsMap.containsKey(Id))
-        {
-            return teacherMap.values().stream().filter(x->x.getGroup().getId()==Id).toList();
-        }else{return null;}
+        return teacherMap.values().stream().toList();
     }
 
     @Override

@@ -1,7 +1,8 @@
-package repositories;
+package repositories.entityRep;
 
 import entity.GroupStudents;
 import entity.Student;
+import repositories.DataBase;
 import repositories.interfaces.IStudentRepos;
 
 import java.util.Collections;
