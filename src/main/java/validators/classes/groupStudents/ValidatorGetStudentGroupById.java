@@ -9,7 +9,7 @@ import java.util.List;
 
 public class ValidatorGetStudentGroupById implements IValidator<GetStudentGroupById>
 {
-    private ValidateInt validateInt;
+    private final ValidateInt validateInt;
 
     public ValidatorGetStudentGroupById(ValidateInt validateInt) {
         this.validateInt = validateInt;

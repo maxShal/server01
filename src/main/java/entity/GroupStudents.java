@@ -5,13 +5,13 @@ import java.util.Objects;
 public class GroupStudents
 {
     private final String groupName;
-    private final long id;
+    private final Long id;
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public GroupStudents(long id, String groupName) {
+    public GroupStudents(Long id, String groupName) {
         this.groupName = groupName;
         this.id =id;
     }
