@@ -3,7 +3,7 @@ package entity;
 import java.util.Objects;
 
 public class Student {
-    private final long id;
+    private final Long id;
     private final String name;
     private final String surename;
     private final String fathername;
@@ -11,7 +11,7 @@ public class Student {
     private final String status;
     private final GroupStudents group;
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -35,7 +35,7 @@ public class Student {
         return group;
     }
 
-    public Student(long id, String surename,String name, String fathername, String status, GroupStudents group) {
+    public Student(Long id, String surename,String name, String fathername, String status, GroupStudents group) {
         this.id = id;
         this.surename = surename;
         this.name = name;

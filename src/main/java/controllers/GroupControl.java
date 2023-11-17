@@ -7,6 +7,7 @@ import request.groupStudents.EditStudentGroup;
 import request.groupStudents.GetStudentGroupById;
 import response.CommonResponse;
 import response.ResponseEntity;
+import response.groupStudent.*;
 import services.interfases.IGroupServ;
 import validators.classes.groupStudents.ValidatorAddStudentGroup;
 import validators.classes.groupStudents.ValidatorDeleteStudentGroup;
@@ -24,7 +25,6 @@ public class GroupControl
     private final ValidatorGetStudentGroupById validatorGetStudentGroupById;
     private final ValidatorEditStudentGroup validatorEditStudentGroup;
     private final ValidatorDeleteStudentGroup validatorDeleteStudentGroup;
-    //private final ValidateInt validateInt;
 
 
     public GroupControl(IGroupServ groupServ, ValidatorAddStudentGroup validatorAddStudentGroup, ValidatorGetStudentGroupById validatorGetStudentGroupById, ValidatorEditStudentGroup validatorEditStudentGroup, ValidateInt validateInt, ValidatorDeleteStudentGroup validatorDeleteStudentGroup) {
@@ -32,18 +32,17 @@ public class GroupControl
         this.validatorAddStudentGroup = validatorAddStudentGroup;
         this.validatorGetStudentGroupById = validatorGetStudentGroupById;
         this.validatorEditStudentGroup = validatorEditStudentGroup;
-       // this.validateInt = validateInt;
         this.validatorDeleteStudentGroup = validatorDeleteStudentGroup;
     }
 
-    public ResponseEntity<CommonResponse<List<GroupStudents>>> getGroupStudents()
+    public ResponseEntity<CommonResponse<GetStudentGroupsResponse>> getGroupStudents()
     {
         var problems =new ArrayList<String>();
         long status = 200L;
-        CommonResponse<List<GroupStudents>> response;
+        CommonResponse<GetStudentGroupsResponse> response;
         try{
             var groupList=groupServ.getGroups();
-            response = new CommonResponse<>(groupList);
+            response = new CommonResponse<>(new GetStudentGroupsResponse(groupList));
         }
         catch (Exception e)
         {
@@ -53,16 +52,16 @@ public class GroupControl
         return new ResponseEntity<>(response,status);
     }
 
-    public ResponseEntity<CommonResponse<GroupStudents>>getGroupStudentsById(GetStudentGroupById getStudentGroupById)
+    public ResponseEntity<CommonResponse<GetStudentGroupByIdResponse>>getGroupStudentsById(GetStudentGroupById getStudentGroupById)
     {
         var problems = validatorGetStudentGroupById.validator(getStudentGroupById);
         long status =200L;
-        CommonResponse<GroupStudents> response;
+        CommonResponse<GetStudentGroupByIdResponse> response;
         if(problems.isEmpty())
         {
             try{
                 var group = groupServ.getGroup(getStudentGroupById.getId());
-                response=new CommonResponse<>(group);
+                response=new CommonResponse<>(new GetStudentGroupByIdResponse(group));
             }
             catch (Exception e)
             {
@@ -77,16 +76,16 @@ public class GroupControl
         return new ResponseEntity<>(response,status);
     }
 
-    public ResponseEntity<CommonResponse<Long>> addStudentGroup(AddStudentGroup addStudentGroup)
+    public ResponseEntity<CommonResponse<AddStudentGroupResponse>> addStudentGroup(AddStudentGroup addStudentGroup)
     {
         var problems = validatorAddStudentGroup.validator(addStudentGroup);
         long status=201L;
-        CommonResponse<Long> response;
+        CommonResponse<AddStudentGroupResponse> response;
         if(problems.isEmpty())
         {
             try{
                 var id = groupServ.addGroup(new GroupStudents(null,addStudentGroup.getName()));
-                response =new CommonResponse<>(id);
+                response =new CommonResponse<>(new AddStudentGroupResponse(id));
             }
             catch (Exception e)
             {
@@ -101,16 +100,16 @@ public class GroupControl
         return new ResponseEntity<>(response,status);
     }
 
-    public ResponseEntity<CommonResponse<Long>> editStudentsGroup(EditStudentGroup editStudentGroup)
+    public ResponseEntity<CommonResponse<EditStudentGroupResponse>> editStudentsGroup(EditStudentGroup editStudentGroup)
     {
         var problems = validatorEditStudentGroup.validator(editStudentGroup);
         long status= 200L;
-        CommonResponse<Long> response;
+        CommonResponse<EditStudentGroupResponse> response;
         if(problems.isEmpty())
         {
             try{
                 groupServ.updateGroup(new GroupStudents(editStudentGroup.getId(), editStudentGroup.getName()));
-                response=new CommonResponse<>(editStudentGroup.getId());
+                response=new CommonResponse<>(new EditStudentGroupResponse(editStudentGroup.getName()));
             }catch (Exception e)
             {
                 status=404L;
@@ -123,15 +122,15 @@ public class GroupControl
         }
         return new ResponseEntity<>(response,status);
     }
-    public ResponseEntity<CommonResponse<Long>> deleteStudentGroup(DeleteStudentGroup deleteStudentGroup)
+    public ResponseEntity<CommonResponse<DeleteStudentGroupResponse>> deleteStudentGroup(DeleteStudentGroup deleteStudentGroup)
     {
         var problems = validatorDeleteStudentGroup.validator(deleteStudentGroup);
         long status =200L;
-        CommonResponse<Long> response;
+        CommonResponse<DeleteStudentGroupResponse> response;
         if(problems.isEmpty()){
             try{
                 groupServ.deleteGroup(deleteStudentGroup.getId());
-                response=new CommonResponse<>(deleteStudentGroup.getId());
+                response=new CommonResponse<>(new DeleteStudentGroupResponse());
             }catch (Exception e)
             {
                 status=422L;

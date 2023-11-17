@@ -1,4 +1,6 @@
 package response.groupStudent;
 
-public record GetStudentGroupByIdResponse(String name) {
+import entity.GroupStudents;
+
+public record GetStudentGroupByIdResponse(GroupStudents name) {
 }
