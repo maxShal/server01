@@ -1,6 +1,7 @@
 package validators.classes.teacher;
 
 import request.student.EditStudent;
+import request.teacher.EditTeacher;
 import validators.IValidator;
 import validators.primitive.ValidateInt;
 import validators.primitive.ValidateString;
@@ -8,7 +9,7 @@ import validators.primitive.ValidateString;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ValidatorEditTeacher implements IValidator<EditStudent> {
+public class ValidatorEditTeacher implements IValidator<EditTeacher> {
     private ValidateInt validateInt;
     private ValidateString validateString;
 
@@ -18,7 +19,7 @@ public class ValidatorEditTeacher implements IValidator<EditStudent> {
     }
 
     @Override
-    public List<String> validator(EditStudent editStudent) {
+    public List<String> validator(EditTeacher editStudent) {
         ArrayList<String> array= new ArrayList<>();
         boolean result;
         result = validateInt.moreZero(editStudent.getGroupId());

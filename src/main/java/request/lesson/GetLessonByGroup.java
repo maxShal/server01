@@ -1,26 +1,35 @@
 package request.lesson;
 
+import entity.Teacher;
+
+import java.time.LocalDate;
+
 public class GetLessonByGroup {
-    private final String startDate;
-    private final String endDate;
-    private final long groupId;
+    private final int numberofLesson;
+    private final Teacher teacher;
+    private final LocalDate date;
+    private Long GroupId;
 
 
-    public GetLessonByGroup(String startDate, String endDate, long groupId) {
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.groupId = groupId;
+    public GetLessonByGroup(int numberofLesson, Teacher teacher, LocalDate date) {
+        this.numberofLesson = numberofLesson;
+        this.teacher = teacher;
+        this.date = date;
     }
 
-    public String getStartDate() {
-        return startDate;
+    public Long getGroupId() {
+        return GroupId;
     }
 
-    public String getEndDate() {
-        return endDate;
+    public int getNumberofLesson() {
+        return numberofLesson;
     }
 
-    public long getGroupId() {
-        return groupId;
+    public Teacher getTeacher() {
+        return teacher;
+    }
+
+    public LocalDate getDate() {
+        return date;
     }
 }

@@ -11,16 +11,16 @@ public class Teacher
     private GroupStudents group;
 
 
-    private final long id;
+    private final Long id;
 
-    public Teacher(long id, String surename,String name, String fathername) {
+    public Teacher(Long id, String surename,String name, String fathername) {
         this.id=id;
         this.surename = surename;
         this.name=name;
         this.fathername = fathername;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
     public GroupStudents getGroup() {

@@ -5,14 +5,14 @@ import java.util.Objects;
 
 public class Lesson
 {
-    private final long id;
+    private final Long id;
     private final int numberOfLesson;
     private final Teacher teacher;
     private final GroupStudents groupStudents;
     private final LocalDate date;
     private long idGroup;// в другой класс.
 
-    public Lesson(long id,int numberOfLesson, Teacher teacher, GroupStudents groupStudents, LocalDate date) {
+    public Lesson(Long id,int numberOfLesson, Teacher teacher, GroupStudents groupStudents, LocalDate date) {
         this.id=id;
         this.numberOfLesson = numberOfLesson;
         this.teacher = teacher;
@@ -20,11 +20,11 @@ public class Lesson
         this.date = date;
     }
 
-    public long getGroupId() {
+    public Long getGroupId() {
         return idGroup;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 

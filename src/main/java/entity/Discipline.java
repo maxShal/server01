@@ -4,19 +4,19 @@ import java.util.Objects;
 
 public class Discipline
 {
-    private final long id;
+    private final Long id;
 
     private final String title;
 
 
-    public Discipline(long id,String title) {
+    public Discipline(Long id,String title) {
         this.title = title;
         this.id=id;
     }
 
 
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 

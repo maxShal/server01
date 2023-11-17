@@ -1,11 +1,16 @@
 package request.lesson;
 
+import entity.GroupStudents;
+import entity.Teacher;
+
 import java.time.LocalDate;
 
 public class AddLesson {
     private int numberOfLesson;
     private long teacherId;
     private long groupStudentsId;
+    private Teacher teacher;///
+    private GroupStudents groupStudents;///
 
     private LocalDate date;
 
@@ -14,6 +19,14 @@ public class AddLesson {
         this.teacherId = teacherId;
         this.groupStudentsId = groupStudentsId;
         this.date = date;
+    }
+
+    public Teacher getTeacher() {
+        return teacher;
+    }
+
+    public GroupStudents getGroupStudents() {
+        return groupStudents;
     }
 
     public int getNumberOfLesson() {
