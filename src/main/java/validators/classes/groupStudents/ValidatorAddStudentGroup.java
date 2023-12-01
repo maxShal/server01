@@ -19,12 +19,12 @@ public class ValidatorAddStudentGroup implements IValidator<AddStudentGroup>
     public List<String> validator(AddStudentGroup addStudentGroup) {
         ArrayList<String> array= new ArrayList<>();
         boolean result;
-        result=validateString.lessMax(addStudentGroup.getName(), 255);
+        result=validateString.lessMax(addStudentGroup.name(), 255);
         if (!result)
         {
             array.add("Name more Max");
         }
-        result=validateString.notNull(addStudentGroup.getName());
+        result=validateString.notNull(addStudentGroup.name());
         if (!result)
         {
             array.add("Is NULL");

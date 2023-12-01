@@ -9,8 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ValidatorAddStudent implements IValidator<AddStudent> {
-    private ValidateInt validateInt;
-    private ValidateString validateString;
+    private final ValidateInt validateInt;
+    private final ValidateString validateString;
 
     public ValidatorAddStudent(ValidateInt validateInt, ValidateString validateString) {
         this.validateInt = validateInt;
@@ -21,42 +21,13 @@ public class ValidatorAddStudent implements IValidator<AddStudent> {
     public List<String> validator(AddStudent addStudent) {
         ArrayList<String> array= new ArrayList<>();
         boolean result;
-        result=validateInt.moreZero(addStudent.getGroupId());
-        if(!result)
-        {
-            array.add("Less 0");
-        }
-        result=validateString.lessMax(addStudent.getFirstName(),255);
-        if(!result)
-        {
-            array.add("More MAX FirstName");
-        }
-        result=validateString.lessMax(addStudent.getMiddleName(),255);
-        if(!result)
-        {
-            array.add("More MAX MiddleName");
-        }
-        result=validateString.lessMax(addStudent.getLastName(),255);
-        if(!result)
-        {
-            array.add("More MAX LastName");
-        }
-        result=validateString.notNull(addStudent.getFirstName());
-        if(!result)
-        {
-            array.add("NULL FirstName");
-        }
-
-        result=validateString.notNull(addStudent.getMiddleName());
-        if(!result)
-        {
-            array.add("NULL MiddleName");
-        }
-        result=validateString.notNull(addStudent.getLastName());
-        if(!result)
-        {
-            array.add("NULL LastName");
-        }
+        validateInt.moreZero(addStudent.groupId(), array, "groupId");
+        validateString.lessMax(addStudent.firstName(),255, array,"first Name");
+        validateString.lessMax(addStudent.middleName(),255, array, "middleName");
+        validateString.lessMax(addStudent.lastName(),255,array,"lastName");
+        validateString.notNull(addStudent.firstName(),array,"firstName");
+        validateString.notNull(addStudent.middleName(),array, "middleName");
+        validateString.notNull(addStudent.lastName(), array, "lastName");
         return array;
     }
 }

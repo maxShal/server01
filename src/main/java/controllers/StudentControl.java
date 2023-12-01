@@ -9,8 +9,6 @@ import services.interfases.IGroupServ;
 import services.interfases.IStudentServ;
 import validators.classes.student.*;
 
-import javax.swing.*;
-
 public class StudentControl
 {
     private final IStudentServ studentServ;
@@ -39,8 +37,8 @@ public class StudentControl
         if(problems.isEmpty())
         {
             try{
-                var group = groupServ.getGroup(addStudent.getGroupId());
-                var id = studentServ.add(new Student(addStudent.getGroupId(),addStudent.getLastName(), addStudent.getFirstName(), addStudent.getMiddleName(), addStudent.getStatus(),group));
+                var group = groupServ.getGroup(addStudent.groupId());
+                var id = studentServ.add(new Student(addStudent.groupId(),addStudent.lastName(), addStudent.firstName(), addStudent.middleName(), addStudent.status(),group));
                 response=new CommonResponse<>(new AddStudentResponse(id));
             }
             catch (Exception e)

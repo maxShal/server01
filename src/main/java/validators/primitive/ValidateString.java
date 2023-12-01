@@ -1,13 +1,25 @@
 package validators.primitive;
 
+import java.util.List;
+
 public class ValidateString
 {
-    public boolean lessMax(String string, int max)
+    public boolean lessMax(String string, int max, List<String> error, String fieldName)
     {
-        return string.length() < max;
+        if (string.length() < max)
+        {
+            error.add(fieldName + " less max ");
+            return false;
+        }
+        return true;
     }
-    public boolean notNull(String string)
+    public boolean notNull(String string, List<String> error, String fieldName)
     {
-        return !"".equals(string);
+        if(!"".equals(string))
+        {
+            error.add(fieldName+" is NULL");
+            return false;
+        }
+        return true;
     }
 }

@@ -1,18 +1,11 @@
 package request.groupStudents;
 
-public class AddStudentGroup
-{
-    private String name;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
-    public AddStudentGroup(String name) {
-        this.name = name;
-    }
+@JsonSerialize
+@JsonDeserialize
+public record AddStudentGroup( @JsonProperty("name") String name) {
 
-    public String getName() {
-        return name;
-    }
-
-    public static class GetStudentGroups {
-
-    }
 }

@@ -9,7 +9,7 @@ import java.util.List;
 
 public class ValidatorGetStudentById implements IValidator<GetStudentById>
 {
-    private ValidateInt validateInt;
+    private final ValidateInt validateInt;
 
     public ValidatorGetStudentById(ValidateInt validateInt) {
         this.validateInt = validateInt;
@@ -18,12 +18,7 @@ public class ValidatorGetStudentById implements IValidator<GetStudentById>
     @Override
     public List<String> validator(GetStudentById getStudentById) {
         ArrayList<String> array= new ArrayList<>();
-        boolean result;
-        result=validateInt.moreZero(getStudentById.getId());
-        if(!result)
-        {
-            array.add("Less 0");
-        }
+        validateInt.moreZero(getStudentById.getId(),array,"studentId");
         return array;
     }
 }

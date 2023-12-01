@@ -16,7 +16,6 @@ import validators.classes.groupStudents.ValidatorGetStudentGroupById;
 import validators.primitive.ValidateInt;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class GroupControl
 {
@@ -84,7 +83,7 @@ public class GroupControl
         if(problems.isEmpty())
         {
             try{
-                var id = groupServ.addGroup(new GroupStudents(null,addStudentGroup.getName()));
+                var id = groupServ.addGroup(new GroupStudents(null,addStudentGroup.name()));
                 response =new CommonResponse<>(new AddStudentGroupResponse(id));
             }
             catch (Exception e)

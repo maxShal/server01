@@ -27,23 +27,42 @@ public class ValidatorGetLessonByGroup implements IValidator<GetLessonByGroup> {
         {
             array.add("less 0");
         }
-        result=validateString.notNull(getLessonByGroup.getStartDate());
+        result=validateInt.moreZero((long) getLessonByGroup.getNumberofLesson());
         if(!result)
         {
-            array.add("Is NULL");
+            array.add("less 0");
         }
-        result=validateString.lessMax(getLessonByGroup.getStartDate(), 255);
+        result=validateString.notNull(getLessonByGroup.getTeacher().getSurename());
+        if(!result)
+        {
+            array.add("Null");
+        }
+        result=validateString.notNull(getLessonByGroup.getTeacher().getName());
+        if(!result)
+        {
+            array.add("Null");
+        }
+        result=validateString.notNull(getLessonByGroup.getTeacher().getFathername());
+        if(!result)
+        {
+            array.add("Null");
+        }
+        result=validateInt.moreZero(getLessonByGroup.getTeacher().getId());
+        if(!result)
+        {
+            array.add("less 0");
+        }
+        result=validateString.lessMax(getLessonByGroup.getTeacher().getSurename(), 255);
         if(!result)
         {
             array.add("More MAX");
         }
-
-        result=validateString.notNull(getLessonByGroup.getEndDate());
+        result=validateString.lessMax(getLessonByGroup.getTeacher().getFathername(), 255);
         if(!result)
         {
-            array.add("Is NULL");
+            array.add("More MAX");
         }
-        result=validateString.lessMax(getLessonByGroup.getEndDate(), 255);
+        result=validateString.lessMax(getLessonByGroup.getTeacher().getName(), 255);
         if(!result)
         {
             array.add("More MAX");

@@ -9,8 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ValidatorEditStudent implements IValidator<EditStudent> {
-    private ValidateInt validateInt;
-    private ValidateString validateString;
+    private final ValidateInt validateInt;
+    private final ValidateString validateString;
 
     public ValidatorEditStudent(ValidateInt validateInt, ValidateString validateString) {
         this.validateInt = validateInt;
@@ -20,42 +20,13 @@ public class ValidatorEditStudent implements IValidator<EditStudent> {
     public List<String> validator(EditStudent editStudent) {
         ArrayList<String> array= new ArrayList<>();
         boolean result;
-        result=validateInt.moreZero(editStudent.getGroupId());
-        if(!result)
-        {
-            array.add("Less 0");
-        }
-        result=validateString.lessMax(editStudent.getFirstName(),255);
-        if(!result)
-        {
-            array.add("More MAX FirstName");
-        }
-        result=validateString.lessMax(editStudent.getMiddleName(),255);
-        if(!result)
-        {
-            array.add("More MAX MiddleName");
-        }
-        result=validateString.lessMax(editStudent.getLastName(),255);
-        if(!result)
-        {
-            array.add("More MAX LastName");
-        }
-        result=validateString.notNull(editStudent.getFirstName());
-        if(!result)
-        {
-            array.add("NULL FirstName");
-        }
-
-        result=validateString.notNull(editStudent.getMiddleName());
-        if(!result)
-        {
-            array.add("NULL MiddleName");
-        }
-        result=validateString.notNull(editStudent.getLastName());
-        if(!result)
-        {
-            array.add("NULL LastName");
-        }
+        validateInt.moreZero(editStudent.getGroupId(),array,"groupId");
+        validateString.lessMax(editStudent.getFirstName(),255, array,"firstName");
+        validateString.lessMax(editStudent.getMiddleName(),255,array,"middleName");
+        validateString.lessMax(editStudent.getLastName(),255,array,"lastName");
+        validateString.notNull(editStudent.getFirstName(),array,"firstName");
+        validateString.notNull(editStudent.getMiddleName(),array,"middleName");
+        validateString.notNull(editStudent.getLastName(),array,"lastName");
         return array;
     }
 }

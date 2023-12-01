@@ -2,11 +2,13 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import controllers.GroupControl;
 import controllers.StudentControl;
+import entity.GroupStudents;
+import entity.Student;
 import repositories.DataBase;
 import repositories.entityRep.GroupRepos;
 import repositories.entityRep.StudentsRepos;
-import request.groupStudents.AddStudentGroup;
-import request.groupStudents.DeleteStudentGroup;
+import request.groupStudents.*;
+import request.student.*;
 import response.CommonResponse;
 import response.ResponseEntity;
 import services.entityServ.GroupServ;
@@ -72,19 +74,72 @@ public class Server
 
     public String mainMethod(String endPoint, String json) throws JsonProcessingException {
         ObjectMapper mapper=new ObjectMapper();
-        String result;
+        String result="";
         switch(endPoint)
         {
-            case "addStudentGroup":
+            case "AddStudentGroup":
             {
                 result=mapper.writeValueAsString(groupControl.addStudentGroup(mapper.readValue(json, AddStudentGroup.class)));
                 break;
             }
-            case "deleteStudentGroup":
+            case "DeleteStudentGroup":
             {
                 result=mapper.writeValueAsString(groupControl.deleteStudentGroup(mapper.readValue(json, DeleteStudentGroup.class)));
                 break;
             }
+            case "EditStudentGroup":
+            {
+                result=mapper.writeValueAsString(groupControl.editStudentsGroup(mapper.readValue(json, EditStudentGroup.class)));
+                break;
+            }
+            case "GetStudentGroupById":
+            {
+                result=mapper.writeValueAsString(groupControl.getGroupStudentsById(mapper.readValue(json, GetStudentGroupById.class)));
+                break;
+            }
+            case "GetStudentGroups":
+            {
+                result=mapper.writeValueAsString(groupControl.getGroupStudents());
+                break;
+            }
+            case "AddStudent":
+            {
+                result=mapper.writeValueAsString(studentControl.addStudent(mapper.readValue(json, AddStudent.class)));
+                break;
+            }
+            case "DeleteStudent":
+            {
+                result=mapper.writeValueAsString(studentControl.deleteStudent(mapper.readValue(json, DeleteStudent.class)));
+                break;
+            }
+            case "EditStudent":
+            {
+                result =mapper.writeValueAsString(studentControl.editStudent(mapper.readValue(json, EditStudent.class)));
+                break;
+            }
+            case "GetStudentById":
+            {
+                result =mapper.writeValueAsString(studentControl.getBtId(mapper.readValue(json, GetStudentById.class)));
+                break;
+            }
+            case "GetStudentsByGroup":
+            {
+                result =mapper.writeValueAsString(studentControl.getByGroup(mapper.readValue(json, GetStudentsByGroup.class)));
+                break;
+            }
         }
+        return result;
+    }
+
+
+    public static void main(String[] args) throws JsonProcessingException {
+        Server server = new Server();
+        ObjectMapper objectMapper = new ObjectMapper();
+        //String jsonStudent = objectMapper.writeValueAsString(new Student(null, "Karabalin", "Ruslan", "kak-to tam", "Study", new GroupStudents(null, "ММБ-104_02")));
+        String jsonStudent = objectMapper.writeValueAsString(new AddStudent("Karabalin", "Ruslan"," Kak-to tam",1L,"Study"));///1L?
+        String json = new ObjectMapper().writeValueAsString(new AddStudentGroup("ММБ-104-02"));
+        //System.out.println(jsonStudent);
+        System.out.println(server.mainMethod("GetStudentGroups",json));
+
     }
 }

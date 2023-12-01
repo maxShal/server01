@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ValidatorGetStudentByGroup implements IValidator<GetStudentsByGroup> {
-    private ValidateInt validateInt;
+    private final ValidateInt validateInt;
 
     public ValidatorGetStudentByGroup(ValidateInt validateInt) {
         this.validateInt = validateInt;
@@ -16,12 +16,7 @@ public class ValidatorGetStudentByGroup implements IValidator<GetStudentsByGroup
     @Override
     public List<String> validator(GetStudentsByGroup getStudentsByGroup) {
         ArrayList<String> array= new ArrayList<>();
-        boolean result;
-        result=validateInt.moreZero(getStudentsByGroup.getId());
-        if(!result)
-        {
-            array.add("Less 0");
-        }
+        validateInt.moreZero(getStudentsByGroup.getId(),array,"studentId");
         return array;
     }
 }

@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ValidatorDeleteStudent implements IValidator<DeleteStudent>{
-    private ValidateInt validateInt;
+    private final ValidateInt validateInt;
 
     public ValidatorDeleteStudent(ValidateInt validateInt) {
         this.validateInt = validateInt;
@@ -17,12 +17,7 @@ public class ValidatorDeleteStudent implements IValidator<DeleteStudent>{
     @Override
     public List<String> validator(DeleteStudent deleteStudent) {
         ArrayList<String> array= new ArrayList<>();
-        boolean result;
-        result=validateInt.moreZero(deleteStudent.getId());
-        if(!result)
-        {
-            array.add("Less 0");
-        }
+        validateInt.moreZero(deleteStudent.getId(),array, "studentId");
         return array;
     }
 }
