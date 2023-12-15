@@ -17,12 +17,8 @@ public class ValidatorGetLessonById implements IValidator<GetLessonById> {
     @Override
     public List<String> validator(GetLessonById getLessonById) {
         ArrayList<String> array= new ArrayList<>();
-        boolean result;
-        result=validateInt.moreZero(getLessonById.getId());
-        if(!result)
-        {
-            array.add("less 0");
-        }
+        validateInt.moreZero(getLessonById.getId(),   array, "groupId");
+
         return array;
     }
 }

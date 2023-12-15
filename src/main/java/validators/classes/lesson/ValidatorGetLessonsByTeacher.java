@@ -10,8 +10,8 @@ import java.util.List;
 
 public class ValidatorGetLessonsByTeacher implements IValidator<GetLessonsByTeacher>
 {
-    private ValidateInt validateInt;
-    private ValidateString validateString;
+    private final ValidateInt validateInt;
+    private final ValidateString validateString;
 
     public ValidatorGetLessonsByTeacher(ValidateInt validateInt, ValidateString validateString) {
         this.validateInt = validateInt;
@@ -20,33 +20,18 @@ public class ValidatorGetLessonsByTeacher implements IValidator<GetLessonsByTeac
     @Override
     public List<String> validator(GetLessonsByTeacher getLessonsByTeacher) {
         ArrayList<String> array= new ArrayList<>();
-        boolean result;
-        result=validateInt.moreZero(getLessonsByTeacher.getTeacherId());
-        if(!result)
-        {
-            array.add("less 0");
-        }
-        result=validateString.notNull(getLessonsByTeacher.getStartDate());
-        if(!result)
-        {
-            array.add("Is NULL");
-        }
-        result=validateString.lessMax(getLessonsByTeacher.getStartDate(), 255);
-        if(!result)
-        {
-            array.add("More MAX");
-        }
+        validateInt.moreZero(getLessonsByTeacher.getTeacherId(), array,"teacherId");
+        validateString.lessMax(getLessonsByTeacher.getStartDate(),255,array,"StartDate");
+        validateString.lessMax(getLessonsByTeacher.getEndDate(),255,array,"EndDate");
+        validateString.lessMax(getLessonsByTeacher.getTeacher().getName(),255,array,"name");
+        validateString.lessMax(getLessonsByTeacher.getTeacher().getFathername(),255,array,"father-name");
+        validateString.lessMax(getLessonsByTeacher.getTeacher().getSurename(),255,array,"surname");
 
-        result=validateString.notNull(getLessonsByTeacher.getEndDate());
-        if(!result)
-        {
-            array.add("Is NULL");
-        }
-        result=validateString.lessMax(getLessonsByTeacher.getEndDate(), 255);
-        if(!result)
-        {
-            array.add("More MAX");
-        }
+        validateString.notNull(getLessonsByTeacher.getStartDate(),array,"StartDate");
+        validateString.notNull(getLessonsByTeacher.getEndDate(),array,"EndDate");
+        validateString.notNull(getLessonsByTeacher.getTeacher().getName(),array,"name");
+        validateString.notNull(getLessonsByTeacher.getTeacher().getFathername(),array,"father-name");
+        validateString.notNull(getLessonsByTeacher.getTeacher().getSurename(),array,"surname");
         return array;
     }
 }

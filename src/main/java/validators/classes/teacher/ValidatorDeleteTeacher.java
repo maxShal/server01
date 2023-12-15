@@ -17,12 +17,7 @@ public class ValidatorDeleteTeacher implements IValidator<DeleteTeacher> {
     @Override
     public List<String> validator(DeleteTeacher deleteTeacher) {
         ArrayList<String> array= new ArrayList<>();
-        boolean result;
-        result=validateInt.moreZero(deleteTeacher.getId());
-        if(!result)
-        {
-            array.add("Less 0");
-        }
+        validateInt.moreZero(deleteTeacher.getId(), array, "Id");
         return array;
     }
 }

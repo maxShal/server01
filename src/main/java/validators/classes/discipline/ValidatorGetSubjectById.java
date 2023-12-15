@@ -18,12 +18,7 @@ public class ValidatorGetSubjectById implements IValidator<GetSubjectById>
     @Override
     public List<String> validator(GetSubjectById getSubjectById) {
         ArrayList<String> array= new ArrayList<>();
-        boolean result;
-        result = validateInt.moreZero(getSubjectById.getId());
-        if(!result)
-        {
-            array.add("Less 0");
-        }
+        validateInt.moreZero(getSubjectById.getId(),  array, "Id");
         return array;
     }
 }

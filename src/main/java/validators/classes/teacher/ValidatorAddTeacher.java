@@ -19,42 +19,16 @@ public class ValidatorAddTeacher implements IValidator<AddTeacher> {
     @Override
     public List<String> validator(AddTeacher addTeacher) {
         ArrayList<String> array= new ArrayList<>();
-        boolean result;
-        result=validateInt.moreZero(addTeacher.getGroupId());
-        if(!result)
-        {
-            array.add("Less 0");
-        }
-        result=validateString.notNull(addTeacher.getFirstName());
-        if(!result)
-        {
-            array.add("Is NULL FirstName");
-        }
-        result=validateString.notNull(addTeacher.getMiddleName());
-        if(!result)
-        {
-            array.add("Is NULL MiddleName");
-        }
-        result=validateString.notNull(addTeacher.getLastName());
-        if(!result)
-        {
-            array.add("Is NULL LastName");
-        }
-        result=validateString.lessMax(addTeacher.getFirstName(), 255);
-        if(!result)
-        {
-            array.add("More MAX FirstName");
-        }
-        result=validateString.lessMax(addTeacher.getMiddleName(), 255);
-        if(!result)
-        {
-            array.add("More MAX MiddleName");
-        }
-        result=validateString.lessMax(addTeacher.getLastName(), 255);
-        if(!result)
-        {
-            array.add("More MAX LastName");
-        }
+        validateInt.moreZero(addTeacher.getGroupId(),  array, "groupId");
+
+        validateString.lessMax(addTeacher.getFirstName(),255, array,"first Name");
+        validateString.lessMax(addTeacher.getMiddleName(),255, array, "middleName");
+        validateString.lessMax(addTeacher.getLastName(), 255,array,"lastname");
+
+        validateString.notNull(addTeacher.getFirstName(),array,"firstName");
+        validateString.notNull(addTeacher.getMiddleName(), array, "middleName");
+        validateString.notNull(addTeacher.getLastName(), array, "lastName");
+
         return array;
     }
 }

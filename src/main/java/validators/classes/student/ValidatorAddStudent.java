@@ -20,7 +20,6 @@ public class ValidatorAddStudent implements IValidator<AddStudent> {
     @Override
     public List<String> validator(AddStudent addStudent) {
         ArrayList<String> array= new ArrayList<>();
-        boolean result;
         validateInt.moreZero(addStudent.groupId(), array, "groupId");
         validateString.lessMax(addStudent.firstName(),255, array,"first Name");
         validateString.lessMax(addStudent.middleName(),255, array, "middleName");

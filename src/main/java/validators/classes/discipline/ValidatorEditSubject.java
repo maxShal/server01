@@ -21,22 +21,9 @@ public class ValidatorEditSubject implements IValidator<EditSubject>
     @Override
     public List<String> validator(EditSubject editSubject) {
         ArrayList<String> array= new ArrayList<>();
-        boolean result;
-        result = validateInt.moreZero(editSubject.getId());
-        if(!result)
-        {
-            array.add("Less 0");
-        }
-        result = validateString.lessMax(editSubject.getName(), 255);
-        if(!result)
-        {
-            array.add(" More max");
-        }
-        result = validateString.notNull(editSubject.getName());
-        if(!result)
-        {
-            array.add("Is NULL");
-        }
+        validateInt.moreZero(editSubject.getId(),  array, "Id");
+        validateString.lessMax(editSubject.getName(),255, array,"Name");
+        validateString.notNull(editSubject.getName(),array,"Name");
         return array;
     }
 }

@@ -18,12 +18,8 @@ public class ValidatorGetTeacherById implements IValidator<GetteacherById> {
     @Override
     public List<String> validator(GetteacherById getteacherById) {
         ArrayList<String> array= new ArrayList<>();
-        boolean result;
-        result=validateInt.moreZero(getteacherById.getId());
-        if(!result)
-        {
-            array.add("Less 0");
-        }
+        validateInt.moreZero(getteacherById.getId(),  array, "Id");
+
         return array;
     }
 }

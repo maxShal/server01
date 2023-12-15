@@ -19,12 +19,7 @@ public class ValidatorDeleteSubject implements IValidator<DeleteSubject>
     @Override
     public List<String> validator(DeleteSubject deleteSubject) {
         ArrayList<String> array= new ArrayList<>();
-        boolean result;
-        result=validateInt.moreZero(deleteSubject.getId());
-        if(!result)
-        {
-            array.add("less 0");
-        }
+        validateInt.moreZero(deleteSubject.getId(),  array, "Id");
         return array;
     }
 }

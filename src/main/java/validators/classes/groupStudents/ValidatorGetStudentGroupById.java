@@ -18,12 +18,7 @@ public class ValidatorGetStudentGroupById implements IValidator<GetStudentGroupB
     @Override
     public List<String> validator(GetStudentGroupById getStudentGroupById) {
         ArrayList<String> array= new ArrayList<>();
-        boolean result;
-        result = validateInt.moreZero(getStudentGroupById.getId());
-        if(!result)
-        {
-            array.add("Less 0");
-        }
+        validateInt.moreZero(getStudentGroupById.getId(), array,"Id");
         return array;
     }
 }

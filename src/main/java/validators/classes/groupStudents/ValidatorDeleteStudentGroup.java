@@ -9,7 +9,7 @@ import java.util.List;
 
 public class ValidatorDeleteStudentGroup implements IValidator<DeleteStudentGroup> {
 
-    private ValidateInt validateInt;
+    private final ValidateInt validateInt;
 
     public ValidatorDeleteStudentGroup(ValidateInt validateInt) {
         this.validateInt = validateInt;
@@ -19,12 +19,7 @@ public class ValidatorDeleteStudentGroup implements IValidator<DeleteStudentGrou
     @Override
     public List<String> validator(DeleteStudentGroup deleteStudentGroup) {
         ArrayList<String> array= new ArrayList<>();
-        boolean result;
-        result=validateInt.moreZero(deleteStudentGroup.getId());
-        if(!result)
-        {
-            array.add("less 0");
-        }
+        validateInt.moreZero(deleteStudentGroup.getId(), array, "groupId");
         return array;
     }
 }
