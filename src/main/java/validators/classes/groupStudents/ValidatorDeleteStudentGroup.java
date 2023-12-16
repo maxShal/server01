@@ -19,7 +19,7 @@ public class ValidatorDeleteStudentGroup implements IValidator<DeleteStudentGrou
     @Override
     public List<String> validator(DeleteStudentGroup deleteStudentGroup) {
         ArrayList<String> array= new ArrayList<>();
-        validateInt.moreZero(deleteStudentGroup.getId(), array, "groupId");
+        validateInt.moreZero(deleteStudentGroup.id(), array, "groupId");
         return array;
     }
 }

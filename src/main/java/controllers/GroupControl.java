@@ -107,8 +107,8 @@ public class GroupControl
         if(problems.isEmpty())
         {
             try{
-                groupServ.updateGroup(new GroupStudents(editStudentGroup.getId(), editStudentGroup.getName()));
-                response=new CommonResponse<>(new EditStudentGroupResponse(editStudentGroup.getName()));
+                groupServ.updateGroup(new GroupStudents(editStudentGroup.id(), editStudentGroup.name()));
+                response=new CommonResponse<>(new EditStudentGroupResponse(editStudentGroup.id(),editStudentGroup.name()));
             }catch (Exception e)
             {
                 status=404L;
@@ -128,8 +128,8 @@ public class GroupControl
         CommonResponse<DeleteStudentGroupResponse> response;
         if(problems.isEmpty()){
             try{
-                groupServ.deleteGroup(deleteStudentGroup.getId());
-                response=new CommonResponse<>(new DeleteStudentGroupResponse());
+                groupServ.deleteGroup(deleteStudentGroup.id());
+                response=new CommonResponse<>(new DeleteStudentGroupResponse(deleteStudentGroup.id()));
             }catch (Exception e)
             {
                 status=422L;

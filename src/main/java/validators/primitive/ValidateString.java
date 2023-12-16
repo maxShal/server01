@@ -6,7 +6,7 @@ public class ValidateString
 {
     public boolean lessMax(String string, int max, List<String> error, String fieldName)
     {
-        if (string.length() < max)
+        if (string.length() >= max)
         {
             error.add(fieldName + " less max ");
             return false;
@@ -15,7 +15,7 @@ public class ValidateString
     }
     public boolean notNull(String string, List<String> error, String fieldName)
     {
-        if(!"".equals(string))
+        if("".equals(string))
         {
             error.add(fieldName+" is NULL");
             return false;

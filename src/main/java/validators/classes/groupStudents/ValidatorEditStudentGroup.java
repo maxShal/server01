@@ -20,9 +20,9 @@ public class ValidatorEditStudentGroup implements IValidator<EditStudentGroup> {
     @Override
     public List<String> validator(EditStudentGroup editStudentGroup) {
         ArrayList<String> array= new ArrayList<>();
-        validateInt.moreZero(editStudentGroup.getId(), array, "groupId");
-        validateString.lessMax(editStudentGroup.getName(),255, array," Name");
-        validateString.notNull(editStudentGroup.getName(),array,"Name");
+        validateInt.moreZero(editStudentGroup.id(), array, "groupId");
+        validateString.lessMax(editStudentGroup.name(),255, array," Name");
+        validateString.notNull(editStudentGroup.name(),array,"Name");
         return array;
     }
 }

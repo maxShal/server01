@@ -1,5 +1,5 @@
 package response.groupStudent;
 
-public class DeleteStudentGroupResponse {
+public record DeleteStudentGroupResponse (Long id){
 
 }

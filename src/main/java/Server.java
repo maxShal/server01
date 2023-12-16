@@ -1,3 +1,9 @@
+import Handler.DefoultHandler;
+import Handler.IHandler;
+import Handler.group.AddGroupHandler;
+import Handler.group.DeleteGroupHandler;
+import Handler.group.EditGroupHandler;
+import Handler.group.GetGroupsHandler;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import controllers.GroupControl;
@@ -23,6 +29,7 @@ import validators.primitive.ValidateInt;
 import validators.primitive.ValidateString;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class Server
 {
@@ -44,6 +51,8 @@ public class Server
     private final StudentServ studentServ;
     private final GroupControl groupControl;
     private final StudentControl studentControl;
+    private final Map<String, IHandler> handler;
+    private final  ObjectMapper mapper;
 
     public Server() {
         this.validateString =new ValidateString();
@@ -62,7 +71,7 @@ public class Server
         this.dataBase=new DataBase(new HashMap<>(),new HashMap<>(),new HashMap<>(),new HashMap<>(),new HashMap<>());
 
         this.groupRepos=new GroupRepos(dataBase);
-        this.studentsRepos=new StudentsRepos(dataBase);
+        this.studentsRepos=new StudentsRepos(dataBase); 
 
         this.groupServ=new GroupServ(groupRepos);
         this.studentServ=new StudentServ(studentsRepos);
@@ -70,10 +79,17 @@ public class Server
         this.groupControl=new GroupControl(groupServ,validatorAddStudentGroup,validatorGetStudentGroupById,validatorEditStudentGroup,validateInt,validatorDeleteStudentGroup);
         this.studentControl=new StudentControl(studentServ,groupServ,validatorAddStudent,validatorDeleteStudent,validatorEditStudent,validatorGetStudentByGroup,validatorGetStudentById);
 
+        mapper=new ObjectMapper();
+        handler = new HashMap<>();
+        handler.put("addGroup", new AddGroupHandler(groupControl));
+        handler.put("deleteGroup",new DeleteGroupHandler(groupControl));
+        handler.put("getGroups",new GetGroupsHandler(groupControl));
+        handler.put("editGroup", new EditGroupHandler(groupControl));
     }
 
     public String mainMethod(String endPoint, String json) throws JsonProcessingException {
-        ObjectMapper mapper=new ObjectMapper();
+        return handler.getOrDefault(endPoint,new DefoultHandler()).hande(json);
+        /*ObjectMapper mapper=new ObjectMapper();
         String result="";
         switch(endPoint)
         {
@@ -127,8 +143,7 @@ public class Server
                 result =mapper.writeValueAsString(studentControl.getByGroup(mapper.readValue(json, GetStudentsByGroup.class)));
                 break;
             }
-        }
-        return result;
+        }*/
     }
 
 
@@ -136,10 +151,10 @@ public class Server
         Server server = new Server();
         ObjectMapper objectMapper = new ObjectMapper();
         //String jsonStudent = objectMapper.writeValueAsString(new Student(null, "Karabalin", "Ruslan", "kak-to tam", "Study", new GroupStudents(null, "ММБ-104_02")));
-        String jsonStudent = objectMapper.writeValueAsString(new AddStudent("Karabalin", "Ruslan"," Kak-to tam",1L,"Study"));///1L?
+        //String jsonStudent = objectMapper.writeValueAsString(new AddStudent("Karabalin", "Ruslan"," Kak-to tam",1L,"Study"));///1L?
         String json = new ObjectMapper().writeValueAsString(new AddStudentGroup("ММБ-104-02"));
         //System.out.println(jsonStudent);
-        System.out.println(server.mainMethod("GetStudentGroups",json));
+        System.out.println(server.mainMethod("addGroup",json));
 
     }
 }

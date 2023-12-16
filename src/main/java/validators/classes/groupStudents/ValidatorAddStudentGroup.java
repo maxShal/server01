@@ -9,7 +9,7 @@ import java.util.List;
 
 public class ValidatorAddStudentGroup implements IValidator<AddStudentGroup>
 {
-    private ValidateString validateString;
+    private final ValidateString validateString;
 
     public ValidatorAddStudentGroup(ValidateString validateString) {
         this.validateString = validateString;

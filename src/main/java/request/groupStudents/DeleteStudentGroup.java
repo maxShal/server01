@@ -1,14 +1,9 @@
 package request.groupStudents;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
-public class DeleteStudentGroup
-{
-    private long id;
-
-    public DeleteStudentGroup(long id) {
-        this.id = id;
-    }
-
-    public long getId() {
-        return id;
-    }
+@JsonSerialize
+@JsonDeserialize
+public record DeleteStudentGroup(@JsonProperty("id") long id) {
 }

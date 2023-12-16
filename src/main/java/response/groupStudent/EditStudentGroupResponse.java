@@ -1,4 +1,4 @@
 package response.groupStudent;
 
-public record EditStudentGroupResponse(String name) {
+public record EditStudentGroupResponse(long id, String name) {
 }
